@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+
+@layer base{
+  @font-face {
+    font-family: KeaniaOne-Regular;
+    src: url(/public/font/KeaniaOne-Regular.ttf);
+  }
+  @font-face {
+    font-family: Karla;
+    src: url(/public/font/Karla/Karla-VariableFont_wght.ttf);
+  }
+  @font-face {
+    font-family: brunson;
+    src: url(/public/font/Brunson.ttf);
+  }
+}
+@theme {
+
+  --font-logo: "KeaniaOne-Regular";
+  --font-Brunson: "brunson-Regular";
+  --font-karla: "karla";
+  --font-display: "Satoshi", "sans-serif","KeaniaOne-Regular";
+  --breakpoint-3xl: 120rem;
+
+  /* --animate-wiggle: wiggle 1s ease-in-out infinity; */
+   
+  --color-logo: #42B29D;
+  --color-background: #172522;
+  --color-canvas: #0B100F;
+  --color-typing: #63AF9F;
+  --color-stock: #24CFA6;
+  --color-btn: #074839;
+  --color-div: #63AF9F;
+  --color-hr: #294A43;
+  --color-avocado-100: oklch(0.99 0 0);
+  --color-avocado-200: oklch(0.98 0.04 113.22);
+  --color-avocado-300: oklch(0.94 0.11 115.03);
+  --color-avocado-400: oklch(0.92 0.19 114.08);
+  --color-avocado-500: oklch(0.84 0.18 117.33);
+  --color-avocado-600: oklch(0.53 0.12 118.34);
+  --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
+  --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+  /* ... */
+}
+html, body, #root {
+  height: 100%;
+}
