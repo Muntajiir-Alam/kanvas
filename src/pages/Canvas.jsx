@@ -30,11 +30,11 @@ import {
   ChevronDown,
   Droplet,
   Scan,
-  Bolt,
   ArrowUp,
   ArrowUpToLine,
   ArrowDown,
   ArrowDownToLine,
+  ChevronRight,
 } from "lucide-react";
 
 const Canvas = () => {
@@ -107,7 +107,7 @@ const Canvas = () => {
             ></div>
             <div className="flex items-center justify-between text-1xl gap-2">
               <button
-                className="cursor-pointer outline-none "
+                className=" outline-none "
                 onClick={() => setClicked(!clicked)}
               >
                 {clicked ? (
@@ -116,7 +116,7 @@ const Canvas = () => {
                   <EyeClosed className="p-0.5" />
                 )}
               </button>
-              <button className="h-7 w-21 p-1 flex items-center justify-around bg-btn rounded-full cursor-pointer focus:scale-110 outline-none transition-all duration-300">
+              <button className="h-7 w-21 p-1 flex items-center justify-around bg-btn rounded-full focus:scale-110 outline-none transition-all duration-300">
                 <h1>Share</h1>
                 <ExternalLink className="p-1" />
               </button>
@@ -126,28 +126,28 @@ const Canvas = () => {
           <div className="h-6 w-8/10 ml-6 flex items-center justify-between">
             <h1 className="text">Stroke</h1>
             <div className="w-20 h-1 bg-red-700"></div>
-            <Bolt strokeWidth={1.75} className="p-1" />
+            <button className="cursor-pointer outline-none active:bg-emerald-500 rounded"><ChevronRight className="p-1" /></button>
           </div>
           <hr className="text-stock my-2" />
           <div className="h-6 w-8/10 ml-6 flex items-center justify-between">
             <h1 className="text">Fill</h1>
             <div className="w-20 h-full rounded bg-yellow-700 "></div>
-            <Bolt strokeWidth={1.75} className="p-1" />
+            <button className="cursor-pointer outline-none active:bg-emerald-500 rounded"><ChevronRight className="p-1" /></button>
           </div>
           <hr className="text-stock my-2" />
           <div className="h-6 w-8/10 ml-6 flex items-center justify-between">
             <h1 className="text">Layers</h1>
             <div className="h-full w-9/17 flex rounded gap-1">
-              <button className="h-full w-1/4 bg-btn rounded">
+              <button className="h-full w-1/4 bg-btn rounded cursor-pointer outline-none active:bg-emerald-500">
                 <ArrowDownToLine strokeWidth={1.75} className="p-1" />
               </button>
-              <button className="h-full w-1/4 bg-btn rounded">
+              <button className="h-full w-1/4 bg-btn rounded cursor-pointer outline-none active:bg-emerald-500">
                 <ArrowDown strokeWidth={1.75} className="p-1" />
               </button>
-              <button className="h-full w-1/4 bg-btn rounded">
+              <button className="h-full w-1/4 bg-btn rounded cursor-pointer outline-none active:bg-emerald-500">
                 <ArrowUp strokeWidth={1.75} className="p-1" />
               </button>
-              <button className="h-full w-1/4 bg-btn rounded">
+              <button className="h-full w-1/4 bg-btn rounded cursor-pointer outline-none active:bg-emerald-500">
                 <ArrowUpToLine strokeWidth={1.75} className="p-1" />
               </button>
             </div>
@@ -188,13 +188,13 @@ const Canvas = () => {
               <sup>o</sup>
             </div>
             <div className="flex justify-evenly items-center h-6.5  rounded w-8/17 bg-btn  ">
-              <button className="outline-none ">
+              <button className="outline-none cursor-pointer ">
                 <RotateCw className="p-1  hover:bg-emerald-700 rounded " />
               </button>
-              <button className="outline-none ">
+              <button className="outline-none cursor-pointer">
                 <FlipVertical2 className="p-1  hover:bg-emerald-700 rounded " />
               </button>
-              <button className="outline-none ">
+              <button className="outline-none cursor-pointer">
                 <FlipHorizontal2 className="p-1  hover:bg-emerald-700 rounded " />
               </button>
             </div>
@@ -203,7 +203,7 @@ const Canvas = () => {
           <div className="w-8/10 h-8 mx-6 flex justify-between items-center text-white">
             <h1 className="text-xs">Appearance</h1>
           </div>
-          <div className="w-5/9 h-5 mx-7 mt-1  flex justify-between items-center text-white">
+          <div className="w-5/9 h-5 mx-7 flex justify-between items-center text-white">
             <h1 className="text-gray-300">Opacity</h1>
             <h1 className="text-gray-300">Corner</h1>
           </div>

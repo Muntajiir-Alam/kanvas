@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { MoveRight } from "lucide-react";
 import GetStarted from "./GetStarted";
 import landing from "../assets/landing.png";
+import Logo from "./Logo";
 const Landing = () => {
   return (
     <div
@@ -29,7 +30,7 @@ const Landing = () => {
             <h3 className="text-white pb-10 tracking-widest">
               Start your journey with Kanvas today!
             </h3>
-            <Link to="/canvas" >
+            <Link to="/canvas">
               <GetStarted />
             </Link>
           </div>
