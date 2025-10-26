@@ -37,7 +37,7 @@ const Signup = () => {
                   name=""
                   id="Username"
                   placeholder="Enter your name"
-                  className="w-full border border-stock  rounded-full h-9 text-xs mt-[2px] px-4 outline-none"
+                  className="w-full border border-stock  rounded-full h-9 text-xs mt-1 px-4 outline-none"
                 />
               </div>
               <div className="w-full h-auto">
@@ -49,7 +49,7 @@ const Signup = () => {
                   name=""
                   id="Username"
                   placeholder="Enter your email"
-                  className="w-full border border-stock  rounded-full h-9 text-xs mt-[2px] px-4 outline-none"
+                  className="w-full border border-stock  rounded-full h-9 text-xs mt-1 px-4 outline-none"
                 />
               </div>
               <div className="w-full">
@@ -61,7 +61,7 @@ const Signup = () => {
                   name=""
                   id="Password"
                   placeholder="Create password"
-                  className="w-full border border-stock  rounded-full h-9 text- my-[2px] px-4 outline-none"
+                  className="w-full border border-stock  rounded-full h-9 text- my-1 px-4 outline-none"
                 />
                 <button
                   type="button"

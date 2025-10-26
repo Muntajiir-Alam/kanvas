@@ -37,7 +37,7 @@ const Login = () => {
                   name=""
                   id="Username"
                   placeholder="Enter your username"
-                  className="w-full border border-stock  rounded-full h-9 text-xs mt-[2px] px-4 outline-none"
+                  className="w-full border border-stock  rounded-full h-9 text-xs mt-1 px-4 outline-none"
                 />
               </div>
               <div className="w-full">
