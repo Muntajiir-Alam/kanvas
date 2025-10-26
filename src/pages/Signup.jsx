@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { EyeClosed, Eye } from "lucide-react";
 import { Link } from "react-router-dom";
 import login from "../assets/login.png";
 import loginbg from "../assets/login-bg.png";
@@ -6,10 +7,9 @@ import google from "../assets/google.png";
 import facebook from "../assets/facebook.svg";
 import github from "../assets/github.svg";
 import Logo from "./Logo";
-import { EyeClosed, Eye } from "lucide-react";
 
-const Login = () => {
-   const [showPassword, setShowPassword] = useState(false);
+const Signup = () => {
+  const [showPassword, setShowPassword] = useState(false);
   return (
     <>
       <div
@@ -23,31 +23,45 @@ const Login = () => {
           <div className="h-full py-10 pr-10 w-3/7">
             <form
               action=""
-              className="h-full w-full gap-3 flex flex-col items-center font-karla text-xs px-8 py-4 text-gray-300"
+              className="h-full w-full gap-1 flex flex-col items-center font-karla text-xs px-8 py-4 text-gray-300"
             >
               <div>
                 <Logo />
               </div>
               <div className="w-full h-auto mb-2">
                 <label htmlFor="Username" className="pl-4">
-                  Username
+                  Your name
                 </label>
                 <input
                   type="text"
                   name=""
                   id="Username"
-                  placeholder="Enter your username"
+                  placeholder="Enter your name"
+                  className="w-full border border-stock  rounded-full h-9 text-xs mt-[2px] px-4 outline-none"
+                />
+              </div>
+              <div className="w-full h-auto">
+                <label htmlFor="Username" className="pl-4">
+                  Your email
+                </label>
+                <input
+                  type="text"
+                  name=""
+                  id="Username"
+                  placeholder="Enter your email"
                   className="w-full border border-stock  rounded-full h-9 text-xs mt-[2px] px-4 outline-none"
                 />
               </div>
               <div className="w-full">
-                <label htmlFor="Password" className="pl-4">Password</label>
+                <label htmlFor="Password" className="pl-4">
+                  Password
+                </label>
                 <input
                   type={showPassword ? "text" : "password"}
                   name=""
                   id="Password"
-                  placeholder="Enter your password"
-                  className=" w-full border border-stock  rounded-full h-9  mt-1 mb-2 px-4 outline-none"
+                  placeholder="Create password"
+                  className="w-full border border-stock  rounded-full h-9 text- my-[2px] px-4 outline-none"
                 />
                 <button
                   type="button"
@@ -56,10 +70,11 @@ const Login = () => {
                 >
                   {showPassword ? <EyeClosed size={20} /> : <Eye size={20} />}
                 </button>
-                <span className="pl-35 " >Forgot password ?</span>
               </div>
-              <button className=" w-full hover:bg-emerald-600 hover:text-sm active:bg-btn text-white rounded-full h-9 bg-btn outline-none cursor-pointer " >Login</button>
-              <span className="my-1">Login with</span>
+              <button className=" w-full my-3 hover:bg-emerald-600  active:bg-btn text-white rounded-full  bg-btn outline-none cursor-pointer py-2 mx-1">
+                Submit
+              </button>
+              <span className=" text-white ">Signup with</span>
               <div className="flex gap-5 h-10">
                 <button className="cursor-pointer">
                   <img src={google} alt="" className="h-6 invert" />
@@ -71,7 +86,9 @@ const Login = () => {
                   <img src={github} alt="" className="h-7 invert" />
                 </button>
               </div>
-              <Link to="/signup" className="cursor-pointer">Don't have an account ? <span className="text-stock">Signup.</span></Link>
+              <Link to="/login" className="cursor-pointer">
+                Already a member ? <span className="text-stock">Login.</span>
+              </Link>
             </form>
           </div>
         </div>
@@ -80,4 +97,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;

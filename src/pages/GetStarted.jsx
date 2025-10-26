@@ -1,8 +1,8 @@
 import { MoveRight } from 'lucide-react';
 const GetStarted = () => {
   return (
-    <div className='p-4 items-center bg-logo rounded-full flex gap-2 h-11 w-36 text-white' >
-      Get started <MoveRight/>
+    <div className='flex gap-2 bg-stock p-2 rounded-full px-4 h-10 w-37 active:bg-emerald-800' >
+      Get started <MoveRight className='p-1'/>
     </div>
   )
 }
