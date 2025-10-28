@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { EyeClosed, Eye } from "lucide-react";
+import { EyeClosed, Eye, Heading1 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import login from "../assets/login.png";
 import loginbg from "../assets/login-bg.png";
 import google from "../assets/google.png";
@@ -9,7 +10,25 @@ import github from "../assets/github.svg";
 import Logo from "./Logo";
 
 const Signup = () => {
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(true);
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    mode: "onSubmit",
+    reValidateMode: "onChange",
+  });
+
+  async function onSubmit(data) {
+    await new Promise((resolve) => {
+      setTimeout(resolve, 3000);
+    });
+    console.log("submiting data", data);
+  }
+
   return (
     <>
       <div
@@ -22,32 +41,49 @@ const Signup = () => {
           </div>
           <div className="h-full py-10 pr-10 w-3/7">
             <form
+              onSubmit={handleSubmit(onSubmit)}
               action=""
-              className="h-full w-full gap-1 flex flex-col items-center font-karla text-xs px-8 py-4 text-gray-300"
+              className="h-full w-full gap-2 flex flex-col items-center font-karla text-xs px-8 py-4 text-gray-300"
             >
               <div>
                 <Logo />
               </div>
-              <div className="w-full h-auto mb-2">
-                <label htmlFor="Username" className="pl-4">
-                  Your name
+              <div className="w-full h-auto ">
+                <label htmlFor="name" className="pl-4">
+                  Name
                 </label>
                 <input
                   type="text"
-                  name=""
-                  id="Username"
+                  id="name"
+                  {...register("name", {
+                    required: "Name is required",
+                    minLength: {
+                      value: 3,
+                      message: "Must be 3–12 characters long.",
+                    },
+                    maxLength: {
+                      value: 12,
+                      message: "Must be 3–12 characters long.",
+                    },
+                  })}
                   placeholder="Enter your name"
-                  className="w-full border border-stock  rounded-full h-9 text-xs mt-1 px-4 outline-none"
+                  className="w-full border border-stock rounded-full h-9 text-xs mt-1 px-4 outline-none"
                 />
+                {errors.name ? (
+                  <p className="pl-4 text-red-500 text-xs mt-1">
+                    {errors.name.message}
+                  </p>
+                ) : null}
               </div>
               <div className="w-full h-auto">
-                <label htmlFor="Username" className="pl-4">
-                  Your email
+                <label htmlFor="email" className="pl-4">
+                  Email
                 </label>
                 <input
-                  type="text"
+                  type="email"
                   name=""
-                  id="Username"
+                  id="email"
+                  {...register("email")}
                   placeholder="Enter your email"
                   className="w-full border border-stock  rounded-full h-9 text-xs mt-1 px-4 outline-none"
                 />
@@ -57,9 +93,10 @@ const Signup = () => {
                   Password
                 </label>
                 <input
-                  type={showPassword ? "text" : "password"}
+                  type={showPassword ? "password" : "text"}
                   name=""
-                  id="Password"
+                  id="password"
+                  {...register("password")}
                   placeholder="Create password"
                   className="w-full border border-stock  rounded-full h-9 text- my-1 px-4 outline-none"
                 />
@@ -71,8 +108,12 @@ const Signup = () => {
                   {showPassword ? <EyeClosed size={20} /> : <Eye size={20} />}
                 </button>
               </div>
-              <button className=" w-full my-3 hover:bg-emerald-600  active:bg-btn text-white rounded-full  bg-btn outline-none cursor-pointer py-2 mx-1">
-                Submit
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className=" w-full my-3 hover:bg-emerald-600  active:bg-btn text-white rounded-full  bg-btn outline-none cursor-pointer py-2 mx-1"
+              >
+                {isSubmitting ? <h1>Submiting</h1> : <h1>Submit</h1>}
               </button>
               <span className=" text-white ">Signup with</span>
               <div className="flex gap-5 h-10">
