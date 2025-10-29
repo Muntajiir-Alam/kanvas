@@ -5,6 +5,7 @@ import Signup  from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import Landing from "./pages/Landing";
 import Canvas from "./pages/Canvas";
+import KanvasChat from "./components/Chat/KanvasChat";
 
 
 
@@ -17,6 +18,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/canvas" element={<Canvas />} />
+        <Route path="/KanvasChat" element={<KanvasChat />} />
       </Routes>
     </>
   );

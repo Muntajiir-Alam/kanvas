@@ -126,13 +126,17 @@ const Canvas = () => {
           <div className="h-6 w-8/10 ml-6 flex items-center justify-between">
             <h1 className="text">Stroke</h1>
             <div className="w-20 h-1 bg-red-700"></div>
-            <button className="cursor-pointer outline-none active:bg-emerald-500 rounded"><ChevronRight className="p-1" /></button>
+            <button className="cursor-pointer outline-none active:bg-emerald-500 rounded">
+              <ChevronRight className="p-1" />
+            </button>
           </div>
           <hr className="text-stock my-2" />
           <div className="h-6 w-8/10 ml-6 flex items-center justify-between">
             <h1 className="text">Fill</h1>
             <div className="w-20 h-full rounded bg-yellow-700 "></div>
-            <button className="cursor-pointer outline-none active:bg-emerald-500 rounded"><ChevronRight className="p-1" /></button>
+            <button className="cursor-pointer outline-none active:bg-emerald-500 rounded">
+              <ChevronRight className="p-1" />
+            </button>
           </div>
           <hr className="text-stock my-2" />
           <div className="h-6 w-8/10 ml-6 flex items-center justify-between">

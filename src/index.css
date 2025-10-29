@@ -52,4 +52,12 @@ html, body, #root {
     border-image: linear-gradient(20deg, #2F917D 0%, #0B100F 70%);
     border-image-slice: 1;
   }
+  .hide-scrollbar {
+    -ms-overflow-style: none;  /* IE aur Edge ke liye */
+    scrollbar-width: none;     /* Firefox ke liye */
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
 }
