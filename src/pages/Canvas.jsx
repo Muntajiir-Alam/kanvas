@@ -41,9 +41,9 @@ import {
 } from "lucide-react";
 
 const Canvas = () => {
-  const [clicked, setClicked] = useState(false);
-  const [clickedL, setClickedL] = useState(false);
-  const [clickedR, setClickedR] = useState(false);
+  const [clicked, setClicked] = useState(true);
+  const [clickedL, setClickedL] = useState(true);
+  const [clickedR, setClickedR] = useState(true);
 
   const btnstyle =
     "flex items-center justify-center h-9 w-9 hover:bg-emerald-700 rounded-sm outline-none focus:scale-110 focus:bg-emerald-700 focus:text-white transition-all duration-300";
