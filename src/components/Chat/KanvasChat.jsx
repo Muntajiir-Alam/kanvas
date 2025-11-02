@@ -1,9 +1,12 @@
-
+import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import chatai from '../../assets/chatai.png'
 import UserImg from '../UserData/UserImg'
 import Username from '../UserData/Username'
 import Capture from '../../assets/capture.png'
 import image_plus from '../../assets/image_plus.png'
+import UserBio from "../UserData/UserBio";
+
 import {
     House,
     MessageCircle,
@@ -29,23 +32,55 @@ import {
     UserPen,
     X,
 } from "lucide-react";
-import UserBio from "../UserData/UserBio";
+
 const LeftBtnStyle="flex items-center justify-center rounded-full outline-none cursor-pointer h-9 w-9 hover:bg-btn focus:text-black transition-all duration-3 active:scale-115 ease-in-out focus:bg-white focus:invert "
 const ChatBtnStyle = "h-10 w-10 rounded-full p-1 bg-stock text-black  flex items-center justify-center outline-none cursor-pointer transition-all duration-3 active:scale-115 ease-in-out focus:bg-white focus:invert"
-const profileStyleBf = "h-full w-full absolute top-0 bg-white/1 backdrop-blur-xs flex items-center justify-center " 
 
 
 
 const KanvasChat = () => {
+    const navigate = useNavigate();
+    const [Profile, setProfile] = useState(true)
+    const [send, setSend] = useState(true)
+
+    const [message, setMessage] = useState("");     
+    const [messages, setMessages] = useState([]);    
+
+    const messagesEndRef = useRef(null);
+
+    const handleSend = () => {
+        if (message.trim() === "") return;  
+        setMessages([...messages, message]); 
+        setMessage(""); 
+    };
+
+    // Auto scroll function in chat after send message
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    };
+    
+     // Messages update hone pe scroll kare
+    useEffect(() => {
+        scrollToBottom();
+    }, [messages]);
     return (
         <>
         <div className="h-full w-full  flex  text-white">
             <div className="bg-background border-r border-stock w-1/17 flex flex-col items-center ">
                 <div className="h-full w-full flex flex-col items-center justify-start gap-5 pt-7 text-white">
-                    <button className="flex h-10 w-10 cursor-pointer rounded-full outline-2 p-1 outline-stock ">
+                    <button 
+                        type='button'
+                        onClick={()=>{
+                            setProfile(!Profile)
+                        }}
+                        className="flex h-10 w-10 cursor-pointer rounded-full outline-2 p-1 outline-stock "
+                        >
                         <UserImg />
                     </button>
-                    <button className={LeftBtnStyle}>
+                    <button 
+                        onClick={() => navigate("/canvas")}
+                        className={LeftBtnStyle}
+                    >
                     <LineSquiggle />
                     </button>
                     ____
@@ -209,7 +244,7 @@ const KanvasChat = () => {
                 </div>
             </div>
             <div className="bg-background w-11/17 flex flex-col items-center relative">
-                <div className=" rounded-2xl  w-205 h-15 flex justify-between top-2 relative">
+                <div className="w-205 h-16 flex justify-between top-2 relative bg-background">
                     <div className="flex items-center gap-2">
                         <img className="h-12  rounded-full" src="https://i.pinimg.com/1200x/6b/d9/2a/6bd92a4a73c0bbbf5bb691da2dd04719.jpg" alt="" />
                         <h1 className="font-bold">Sazar</h1>
@@ -221,18 +256,41 @@ const KanvasChat = () => {
                         <button className={ChatBtnStyle}><EllipsisVertical /></button>
                     </div>
                 </div>
-                <div className="w-205 h-full mt-4 rounded-2xl  ">
-                
+                <div className="w-205 h-135  mt-1  overflow-y-auto scroll-smooth hide-scrollbar ">
+                    {messages.length === 0 ? (
+                    <p className="text-gray-400 text-center mt-50">No messages yet</p>) : ( messages.map((msg, index) => (
+                        <div key={index} className="bg-stock rounded-lg text-black p-2 my-4 ml-5 text-sm w-fit max-w-[80%] self-end text-wrap "> {msg}</div>
+                    ))
+                    )}
+                    <div ref={messagesEndRef} />
                 </div>
-                <div className="w-205 h-14  absolute  bottom-3 text-canvas flex gap-6 justify-between items-center">
+                <div className="w-205 h-14  absolute  bottom-3 bg-bac text-canvas flex gap-6 justify-between items-center">
                     <div className="w-190 h-full bg-stock rounded-full flex justify-between items-center ">
                         <button  className="cursor-pointer h-10 w-10  focus:bg-white focus:invert rounded-full ml-4 flex items-center justify-center outline-none">
                             <Smile />
                         </button>
-                        <input type="text" placeholder="Type a message" className="h-1/2 w-3/4 outline-none"/>
+                        <input 
+                            type="text" 
+                            placeholder="Type a message" 
+                            className="h-1/2 w-3/4 outline-none "
+                            onClick={()=>{
+                                if(send===true){
+                                    setSend(!send)
+                                }
+                            }}
+                            value={message}
+                            onChange={(e) => setMessage(e.target.value)}
+                            onKeyDown={(e) => e.key === "Enter" && handleSend()}
+                        />
+                        {send ? 
                         <button className="cursor-pointer h-10 w-10  focus:bg-white focus:invert rounded-full mr-4 flex items-center justify-center outline-none">
                             <Paperclip />
-                        </button>
+                        </button>:
+                        <button 
+                            onClick={handleSend}
+                            className="cursor-pointer h-10 w-10  focus:bg-white focus:invert rounded-full mr-4 flex items-center justify-center outline-none">
+                            <Send />
+                        </button>}
                     </div>
                     <button className="h-full w-14 bg-stock rounded-full flex items-center justify-center focus:bg-white focus:invert outline-none cursor-pointer">
                         <Mic />
@@ -243,7 +301,8 @@ const KanvasChat = () => {
                 </button>
             </div>
         </div>
-        <div className={profileStyleBf}>
+        <div className={`h-full w-full absolute top-0 bg-white/1 backdrop-blur-xs flex items-center justify-center transition-all duration-500 ease-in-out ${Profile ? "hidden" : null } `}
+        >
             <div className="bg-btn h-3/5 w-2/4 rounded-2xl flex items-center  ">
                 {/* left */}
                 <div className="w-4/7 h-full flex items-center justify-center text-xs">
@@ -260,7 +319,10 @@ const KanvasChat = () => {
                             </button>
                         </div>
                         <button 
-                            
+                            type='button'
+                            onClick={()=>{
+                            setProfile(!Profile)
+                        }}
                         className="absolute -top-6 -left-2 h-10 w-10  flex items-center justify-center bg-white/20 backdrop-blur-x  rounded-full  outline-none cursor-pointer  text-white focus:scale-105 focus:bg-black/80">
                             <X />
                         </button>

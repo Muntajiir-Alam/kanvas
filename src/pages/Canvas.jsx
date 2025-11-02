@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "remixicon/fonts/remixicon.css";
 
 import {
@@ -44,7 +45,7 @@ const Canvas = () => {
   const [clicked, setClicked] = useState(true);
   const [clickedL, setClickedL] = useState(true);
   const [clickedR, setClickedR] = useState(true);
-
+  const navigate = useNavigate();
   const btnstyle =
     "flex items-center justify-center h-9 w-9 hover:bg-emerald-700 rounded-sm outline-none focus:scale-110 focus:bg-emerald-700 focus:text-white transition-all duration-300";
   const menustyle =
@@ -64,8 +65,6 @@ const Canvas = () => {
               className={menustyle}
               onClick={function name() {
                 setClickedL(!clickedL);
-                setClickedMenuL(!clickedMenuL);
-                
               }}
             >
               {clickedL ? <TextAlignJustify /> : <X strokeWidth={1.75} />}
@@ -278,7 +277,11 @@ const Canvas = () => {
             </button>
           </div>
           <div className={clickedR ?menuRightAf  :menuRightBf }>
-            <button className="flex justify-around items-center w-full  cursor-pointer outline-none  active:bg-btn h-12 py-2 rounded hover:bg-emerald-700 transition-all duration-300">
+            <button 
+              onClick={()=>{
+                navigate("/KanvasChat")
+              }}
+              className="flex justify-around items-center w-full cursor-pointer outline-none  active:bg-btn h-12 py-2 rounded hover:bg-emerald-700 transition-all duration-300">
               <MessagesSquare /> Chat
             </button>
             <button className="flex justify-around items-center w-full  cursor-pointer outline-none  active:bg-btn h-12 py-2 rounded hover:bg-emerald-700 transition-all duration-300">
