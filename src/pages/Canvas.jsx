@@ -128,7 +128,7 @@ const Canvas = () => {
               </div>
             </div>
             {/* stock */}
-            <div className="h-10 w-full  px-6 flex items-center justify-between border-t-[1px] border-stock">
+            <div className="h-10 w-full  px-6 flex items-center justify-between border-t border-stock">
               <label for="color1" className="cursor-pointer">
                 Stroke
               </label>
@@ -173,7 +173,7 @@ const Canvas = () => {
                 </button>
               </div>
             </div>
-            <div className="w-full h-[1px] bg-stock mb-3"></div>
+            <div className="w-full h-1 bg-stock mb-3"></div>
             {/* Position */}
             <h1 className="text-gray-300 ml-5 ">Position</h1>
             <div className="h-10 w-full  px-5 flex items-center justify-between  ">
@@ -181,7 +181,7 @@ const Canvas = () => {
                 <div className="flex items-center h-7  rounded w-26 bg-btn ">
                   <label
                     for="x"
-                    className="border-r-1 border-background  h-8 w-7 flex items-center justify-center"
+                    className="border-r border-background  h-8 w-7 flex items-center justify-center"
                   >
                     X
                   </label>
@@ -195,7 +195,7 @@ const Canvas = () => {
                 <div className="flex items-center h-7  rounded w-26 bg-btn ">
                   <label
                     for="Y"
-                    className="border-r-1 border-background  h-8 w-7 flex items-center justify-center"
+                    className="border-r border-background  h-8 w-7 flex items-center justify-center"
                   >
                     Y
                   </label>
@@ -215,7 +215,7 @@ const Canvas = () => {
                 <div className="flex items-center h-7  rounded w-26 bg-btn ">
                   <label
                     for="H"
-                    className="border-r-1 border-background  h-8 w-7 flex items-center justify-center"
+                    className="border-r border-background  h-8 w-7 flex items-center justify-center"
                   >
                     H
                   </label>
@@ -229,7 +229,7 @@ const Canvas = () => {
                 <div className="flex items-center h-7  rounded w-26 bg-btn ">
                   <label
                     for="W"
-                    className="border-r-1 border-background  h-8 w-7 flex items-center justify-center"
+                    className="border-r border-background  h-8 w-7 flex items-center justify-center"
                   >
                     W
                   </label>
@@ -274,7 +274,7 @@ const Canvas = () => {
               </div>
             </div>
             {/* Opacity */}
-            <div className="h-24 w-full px-5 pt-3 border-t-[1px] border-stock">
+            <div className="h-24 w-full px-5 pt-3 border-t border-stock">
               <div className="h-14 w-full ">
                 <div className="w-full flex justify-between items-center mb-1 px-1">
                   <label for="Opacity">Opacity</label>
@@ -323,7 +323,7 @@ const Canvas = () => {
               </div>
             </div>
             {/* import - export */}
-            <div className="w-full h-17 px-5 flex justify-around items-center text-white border-t-[1px] border-stock mt-4">
+            <div className="w-full h-17 px-5 flex justify-around items-center text-white border-t border-stock mt-4">
               <button className="h-8 w-26 bg-btn flex px-4  rounded outline-none gap-1 justify-between items-center focus:bg-btn cursor-pointer hover:bg-emerald-700">
                 <FolderDown className="p-1" />
                 <h1 className="text-xs">Import</h1>
