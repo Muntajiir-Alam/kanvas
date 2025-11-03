@@ -57,13 +57,10 @@ const Signup = () => {
                   id="name"
                   {...register("name", {
                     required: "Name is required",
-                    minLength: {
-                      value: 3,
-                      message: "Must be 3–12 characters long.",
-                    },
+                    
                     maxLength: {
-                      value: 12,
-                      message: "Must be 3–12 characters long.",
+                      value: 20,
+                      message: "Must be less than 20 characters.",
                     },
                   })}
                   placeholder="Enter your name"
