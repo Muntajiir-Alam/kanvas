@@ -2,9 +2,10 @@ import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import chatai from '../../assets/chatai.png'
 import UserImg from '../UserData/UserImg'
-import Username from '../UserData/Username'
+import Username from '../UserData/UserName'
 import Capture from '../../assets/capture.png'
 import image_plus from '../../assets/image_plus.png'
+import Community from "../../assets/community.png";
 import UserBio from "../UserData/UserBio";
 
 import {
@@ -31,14 +32,18 @@ import {
     Forward,
     UserPen,
     X,
+    UserPlus,
+    UserRoundSearch,
+    User,
 } from "lucide-react";
 
-const LeftBtnStyle="flex items-center justify-center p-1 rounded-full outline-none cursor-pointer h-9 w-9 hover:bg-btn focus:text-black transition-all duration-3 active:scale-115 ease-in-out focus:bg-white focus:invert "
-const ChatBtnStyle = "h-10 w-10 rounded-full p-2 bg-stock text-black  flex items-center justify-center outline-none cursor-pointer transition-all duration-3 active:scale-115 ease-in-out focus:bg-white focus:invert"
+const LeftBtnStyle="flex items-center justify-center p-1 rounded-full outline-none cursor-pointer h-9 w-9 hover:bg-btn focus:text-black transition-all duration-300 ease-in-out focus:bg-stock  "
+const ChatBtnStyle = "h-10 w-10 rounded-full p-2 bg-stock text-black  flex items-center justify-center outline-none cursor-pointer transition-all duration-300 active:scale-115 ease-in-out focus:bg-white focus:invert"
 
 const KanvasChat = () => {
     const navigate = useNavigate();
     const [Profile, setProfile] = useState(true)
+    const [addFriends, setAddFriends] = useState(true)
     const [send, setSend] = useState(true)
 
     const [message, setMessage] = useState("");     
@@ -79,6 +84,7 @@ const KanvasChat = () => {
                             <UserImg />
                         </button>
                     </div>
+                    {/* button */}
                     <div className="h-full w-3/5 flex items-center justify-around">
                         <button 
                             onClick={() => navigate("/canvas")}
@@ -92,8 +98,13 @@ const KanvasChat = () => {
                         <button className={LeftBtnStyle}>
                             <Users />
                         </button>
-                        <button className={LeftBtnStyle}>
-                            <MessageSquarePlus />
+                        <button 
+                            className={LeftBtnStyle}
+                            onClick={()=>{
+                            setAddFriends(!addFriends)
+                            }}
+                            >
+                            <Search />
                         </button>
                         <button className={LeftBtnStyle}>
                             <EllipsisVertical />
@@ -300,7 +311,7 @@ const KanvasChat = () => {
                     setProfile(!Profile)
                 }}
                 ></div>
-                {/* profile view */}
+                {/* profile view mid*/}
             <div className="absolute bg-btn h-3/5 w-2/4 rounded-2xl flex items-center  ">
                 {/* left */}
                 <div className="w-4/7 h-full flex items-center justify-center text-xs">
@@ -343,6 +354,134 @@ const KanvasChat = () => {
                             Share Profile
                         </button>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        {/* add friendes */}
+        <div className={`h-full w-full absolute top-0 bg-white/1 backdrop-blur-xs flex items-center justify-center transition-all duration-500 ease-in-out ${addFriends ? "hidden" : null}`}
+        >
+            {/* fake div for onClick  */}
+            <div
+            className="h-full w-full "
+                onClick={()=>{
+                    setAddFriends(!addFriends)
+                }}></div>
+            <div className="absolute bg-btn h-5/7 w-3/5 rounded-2xl flex items-center  ">
+                {/* left-div-search friends */}
+                <div className="h-full w-2/5  p-4 flex flex-col gap-2 text-white">
+                    <div className="h-7  flex items-center justify-center">
+                        <div className="font-karla text-lg flex gap-2 items-center "> 
+                            <UserRoundSearch size={20} className="mb-1"/> Search friends
+                        </div>
+                    </div>
+                    <input type="text" name="" id="" placeholder="Search here" className=" bg-stock  w-full h-10 rounded-full pl-4 text-canvas outline-none mb-2" />
+                    
+                    {/* seached list */}
+                    <div className="w-full h-90  bg-background  rounded-2xl font-bold  overflow-y-auto scroll-smooth hide-scrollbar">
+                        
+                        <div className="h-15 w-full flex items-center justify-between rounded-2xl px-3 cursor-pointer hover:bg-white/5">
+                            <div className="h-11 w-11">
+                                <UserImg />
+                            </div>
+                            <h1 className="mr-24">
+                                Gufran Ali
+                            </h1>
+                            <button className="h-8 w-8 p-2 bg-stock rounded-full flex items-center justify-center text-canvas cursor-pointer">
+                                <UserPlus />
+                            </button>
+                        </div>
+                        
+                        <div className="h-15 w-full flex items-center justify-between rounded-2xl px-3 cursor-pointer hover:bg-white/5">
+                            <div className="h-11 w-11">
+                                <UserImg />
+                            </div>
+                            <h1 className="mr-24">
+                                Gufran Ali
+                            </h1>
+                            <button className="h-8 w-8 p-2 bg-stock rounded-full flex items-center justify-center text-canvas cursor-pointer">
+                                <UserPlus />
+                            </button>
+                        </div>
+                        
+                        <div className="h-15 w-full flex items-center justify-between rounded-2xl px-3 cursor-pointer hover:bg-white/5">
+                            <div className="h-11 w-11">
+                                <UserImg />
+                            </div>
+                            <h1 className="mr-24">
+                                Gufran Ali
+                            </h1>
+                            <button className="h-8 w-8 p-2 bg-stock rounded-full flex items-center justify-center text-canvas cursor-pointer">
+                                <UserPlus />
+                            </button>
+                        </div>
+                        
+                        <div className="h-15 w-full flex items-center justify-between rounded-2xl px-3 cursor-pointer hover:bg-white/5">
+                            <div className="h-11 w-11">
+                                <UserImg />
+                            </div>
+                            <h1 className="mr-24">
+                                Gufran Ali
+                            </h1>
+                            <button className="h-8 w-8 p-2 bg-stock rounded-full flex items-center justify-center text-canvas cursor-pointer">
+                                <UserPlus />
+                            </button>
+                        </div>
+                        
+                        <div className="h-15 w-full flex items-center justify-between rounded-2xl px-3 cursor-pointer hover:bg-white/5">
+                            <div className="h-11 w-11">
+                                <UserImg />
+                            </div>
+                            <h1 className="mr-24">
+                                Gufran Ali
+                            </h1>
+                            <button className="h-8 w-8 p-2 bg-stock rounded-full flex items-center justify-center text-canvas cursor-pointer">
+                                <UserPlus />
+                            </button>
+                        </div>
+                        
+                        <div className="h-15 w-full flex items-center justify-between rounded-2xl px-3 cursor-pointer hover:bg-white/5">
+                            <div className="h-11 w-11">
+                                <UserImg />
+                            </div>
+                            <h1 className="mr-24">
+                                Gufran Ali
+                            </h1>
+                            <button className="h-8 w-8 p-2 bg-stock rounded-full flex items-center justify-center text-canvas cursor-pointer">
+                                <UserPlus />
+                            </button>
+                        </div>
+                        
+                        <div className="h-15 w-full flex items-center justify-between rounded-2xl px-3 cursor-pointer hover:bg-white/5">
+                            <div className="h-11 w-11">
+                                <UserImg />
+                            </div>
+                            <h1 className="mr-24">
+                                Gufran Ali
+                            </h1>
+                            <button className="h-8 w-8 p-2 bg-stock rounded-full flex items-center justify-center text-canvas cursor-pointer">
+                                <UserPlus />
+                            </button>
+                        </div>
+                        
+                    </div>
+                </div>
+                {/* right div clicked profile */}
+                <div className="h-full w-3/5 border-l text-white border-stock/34 flex flex-col items-center py-10 gap-4" >
+                    <div className="h-40 w-40">
+                        <UserImg />
+                    </div>
+                    <div className="h-18 w-60  text-center overflow-y-auto overflow-hidden scroll-smooth hide-scrollbar">
+                        <UserBio />
+                    </div>
+                    <div className="flex gap-6 text-lg ">
+                        <div className=" flex items-center   py-2  rounded-2xl justify-around outline-none gap-3 "><User />200 </div>
+                        <div className="flex items-center   py-2  rounded-2xl justify-around outline-none gap-3 "><span><LineSquiggle /></span>200</div>
+                    </div>
+                    <button className="flex items-center  bg-stock py-2  rounded-2xl justify-around outline-none cursor-pointer  gap-3 text-black  focus:bg-black/80 focus:text-white px-4">
+                            <UserPlus />
+                            Add friends
+                    </button>
                 </div>
             </div>
         </div>
