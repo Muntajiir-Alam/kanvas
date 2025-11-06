@@ -35,6 +35,11 @@ import {
     UserPlus,
     UserRoundSearch,
     User,
+    Star,
+    UsersRound,
+    SquareCheckBig,
+    LogOut,
+
 } from "lucide-react";
 
 const LeftBtnStyle="flex items-center justify-center p-1 rounded-full outline-none cursor-pointer h-9 w-9 hover:bg-btn focus:text-black transition-all duration-300 ease-in-out focus:bg-stock  "
@@ -45,7 +50,7 @@ const KanvasChat = () => {
     const [Profile, setProfile] = useState(true)
     const [addFriends, setAddFriends] = useState(true)
     const [send, setSend] = useState(true)
-
+    const [Menu, setMenu] = useState(false)
     const [message, setMessage] = useState("");     
     const [messages, setMessages] = useState([]);    
 
@@ -61,16 +66,17 @@ const KanvasChat = () => {
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     };
-    
-     // Messages update hone pe scroll kare
+
     useEffect(() => {
         scrollToBottom();
     }, [messages]);
     return (
         <>
+        <div className="h-full w-full relative">
+        {/* chat section */}
         <div className="h-full w-full  flex  text-white">
             {/* left div  */}
-            <div className="bg-background border-r border-stock h-full w-5/17 flex  flex-col items-center relative">
+            <div className="bg-background border-r border-stock/20 h-full w-5/17 flex  flex-col items-center relative">
                 {/* header  */}
                 <div className="h-18 absolute top-0 w-full bg-background shadow-lg flex items-center justify-between gap-3  text-white">
                     <div className="h-full w-2/5 flex items-center justify-start ml-6">
@@ -106,7 +112,13 @@ const KanvasChat = () => {
                             >
                             <Search />
                         </button>
-                        <button className={LeftBtnStyle}>
+                        <button 
+                        onClick={()=>{
+                            setMenu(!Menu)
+                        }}
+                        className={LeftBtnStyle}
+                        
+                        >
                             <EllipsisVertical />
                         </button>
                     </div>
@@ -358,7 +370,7 @@ const KanvasChat = () => {
             </div>
         </div>
 
-        {/* add friendes */}
+        {/* add friends section */}
         <div className={`h-full w-full absolute top-0 bg-white/1 backdrop-blur-xs flex items-center justify-center transition-all duration-500 ease-in-out ${addFriends ? "hidden" : null}`}
         >
             {/* fake div for onClick  */}
@@ -484,6 +496,22 @@ const KanvasChat = () => {
                     </button>
                 </div>
             </div>
+        </div>
+        </div>
+        <div className={`${Menu ? "hidden" : null} h-47 w-45 bg-btn absolute top-20 left-70 rounded-lg flex flex-col text-white px-2 text-sm py-2`}>
+            <button className="h-20 w-full flex px-2 gap-4 items-center py-2 cursor-pointer hover:bg-stock/20 rounded-lg outline-none active:scale-101 ">
+                <Star />Star friends
+            </button>
+            <button className="h-20 w-full flex px-2 gap-4 items-center py-2 cursor-pointer hover:bg-stock/20 rounded-lg outline-none active:scale-101 ">
+                <UsersRound />Create group
+            </button>
+            <button className="h-20 w-full flex px-2 gap-4 items-center py-2 cursor-pointer hover:bg-stock/20 rounded-lg mb-1 outline-none active:scale-101">
+                <SquareCheckBig />Select chats
+            </button>
+            <div className="h-[1px] bg-stock/20 w-full"></div>
+            <button className="h-20 w-full flex px-2 gap-4 items-center py-2 cursor-pointer bg-red-700/50  rounded-lg mt-1 outline-none active:scale-101">
+                <LogOut />Log out 
+            </button>
         </div>
         </>
     );
