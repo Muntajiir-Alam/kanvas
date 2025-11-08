@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import chatai from '../../assets/chatai.png'
 import UserImg from '../UserData/UserImg'
 import Username from '../UserData/UserName'
+import UserId from '../UserData/UserId'
 import Capture from '../../assets/capture.png'
 import image_plus from '../../assets/image_plus.png'
 import Community from "../../assets/community.png";
@@ -39,6 +40,7 @@ import {
     UsersRound,
     SquareCheckBig,
     LogOut,
+    Copy,
 
 } from "lucide-react";
 
@@ -46,15 +48,18 @@ const LeftBtnStyle="flex items-center justify-center p-1 rounded-full outline-no
 const ChatBtnStyle = "h-10 w-10 rounded-full p-2 bg-stock text-black  flex items-center justify-center outline-none cursor-pointer transition-all duration-300 active:scale-115 ease-in-out focus:bg-white focus:invert"
 
 const KanvasChat = () => {
+
     const navigate = useNavigate();
     const [Profile, setProfile] = useState(true)
     const [addFriends, setAddFriends] = useState(true)
     const [send, setSend] = useState(true)
-    const [Menu, setMenu] = useState(false)
     const [message, setMessage] = useState("");     
-    const [messages, setMessages] = useState([]);    
-
+    const [messages, setMessages] = useState([]); 
+    const [open, setOpen] = useState(false); 
+    
     const messagesEndRef = useRef(null);
+    const menuRef =useRef()
+    const btnMenuRef =useRef()
 
     const handleSend = () => {
         if (message.trim() === "") return;  
@@ -62,14 +67,31 @@ const KanvasChat = () => {
         setMessage(""); 
     };
 
+    // outside click
+    const handleOutsideClick = (e) => {
+        if(
+            menuRef?.current?.contains(e.target) || btnMenuRef?.current?.contains(e.target) 
+        ){
+            console.log("InsideClick")
+        }else{
+            setOpen(false)
+        }
+    }
+    useEffect(()=>{
+        document.addEventListener("click",handleOutsideClick)
+        return () => {
+            document.removeEventListener("click",handleOutsideClick)
+        } 
+    },[])
+
     // Auto scroll function in chat after send message
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     };
-
     useEffect(() => {
         scrollToBottom();
     }, [messages]);
+
     return (
         <>
         <div className="h-full w-full relative">
@@ -113,11 +135,11 @@ const KanvasChat = () => {
                             <Search />
                         </button>
                         <button 
-                        onClick={()=>{
-                            setMenu(!Menu)
-                        }}
+                        ref={btnMenuRef}
+                        onClick={
+                            () => setOpen(!open)
+                        }
                         className={LeftBtnStyle}
-                        
                         >
                             <EllipsisVertical />
                         </button>
@@ -479,9 +501,14 @@ const KanvasChat = () => {
                     </div>
                 </div>
                 {/* right div clicked profile */}
-                <div className="h-full w-3/5 border-l text-white border-stock/34 flex flex-col items-center py-10 gap-4" >
+                <div className="h-full w-3/5 border-l text-white border-stock/34 flex flex-col items-center py-10 gap-3" >
                     <div className="h-40 w-40">
                         <UserImg />
+                    </div>
+                    {/* User UID */}
+                    <div className="text-xs flex gap-2 items-center">
+                        <UserId />
+                        <span className="cursor-pointer"><Copy size={12}/></span>
                     </div>
                     <div className="h-18 w-60  text-center overflow-y-auto overflow-hidden scroll-smooth hide-scrollbar">
                         <UserBio />
@@ -498,21 +525,28 @@ const KanvasChat = () => {
             </div>
         </div>
         </div>
-        <div className={`${Menu ? "hidden" : null} h-47 w-45 bg-btn absolute top-20 left-70 rounded-lg flex flex-col text-white px-2 text-sm py-2`}>
-            <button className="h-20 w-full flex px-2 gap-4 items-center py-2 cursor-pointer hover:bg-stock/20 rounded-lg outline-none active:scale-101 ">
-                <Star />Star friends
+        {open && (
+        <div
+            ref={menuRef}
+            className="h-47 w-45 bg-btn absolute top-20 left-70 rounded-lg flex flex-col text-white px-2 text-sm py-2 shadow-lg transition-all duration-200"
+        >
+            {/* Option 1 */}
+            <button className="h-20 w-full flex px-2 gap-4 items-center py-2 cursor-pointer hover:bg-stock/20 rounded-lg outline-none active:scale-101">
+            <Star /> Star friends
             </button>
-            <button className="h-20 w-full flex px-2 gap-4 items-center py-2 cursor-pointer hover:bg-stock/20 rounded-lg outline-none active:scale-101 ">
-                <UsersRound />Create group
+            <button className="h-20 w-full flex px-2 gap-4 items-center py-2 cursor-pointer hover:bg-stock/20 rounded-lg outline-none active:scale-101">
+            <UsersRound /> Create group
             </button>
             <button className="h-20 w-full flex px-2 gap-4 items-center py-2 cursor-pointer hover:bg-stock/20 rounded-lg mb-1 outline-none active:scale-101">
-                <SquareCheckBig />Select chats
+            <SquareCheckBig /> Select chats
             </button>
-            <div className="h-[1px] bg-stock/20 w-full"></div>
-            <button className="h-20 w-full flex px-2 gap-4 items-center py-2 cursor-pointer bg-red-700/50  rounded-lg mt-1 outline-none active:scale-101">
-                <LogOut />Log out 
+            <div className="h-[1px] bg-stock/20 w-full my-1"></div>
+            <button className="h-20 w-full flex px-2 gap-4 items-center py-2 cursor-pointer bg-red-700/50 rounded-lg outline-none active:scale-101">
+            <LogOut /> Log out
             </button>
         </div>
+        )}
+
         </>
     );
 };
